@@ -1,3 +1,5 @@
+python3 gps.py &
+
 while true; 
 
 do arecord -D plughw:2,0 -d 5 -f cd -t wav | \
