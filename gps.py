@@ -11,8 +11,7 @@ def parse_gps(data):
         if parts[2] and parts[4]:
             latitude = parts[2]
             longitude = parts[4]
-            print("latitude: ", latitude)
-            print("longitude: ", longitude)
+            longitude = longitude[1:]
             return {
                 "latitude": latitude,
                 "longitude": longitude
@@ -35,12 +34,12 @@ def send_gps_data(endpoint, gps_data):
     except Exception as e:
         print("Error while sending data:", str(e))
 
-endpoint = "http://umay.develop-er.org/upload-gps"
-while True:
-    line = gps_serial.readline().decode('ascii', errors='replace').strip()
-    if line:
-        gps_data = parse_gps(line)
-        if gps_data != None:
-            send_gps_data(endpoint, gps_data)
-    time.sleep(0.1)
-
+def work():
+    endpoint = "http://umay.develop-er.org/upload-gps?id=1"
+    while True:
+        line = gps_serial.readline().decode('ascii', errors='replace').strip()
+        if line:
+            gps_data = parse_gps(line)
+            if gps_data != None:
+                send_gps_data(endpoint, gps_data)
+                break
