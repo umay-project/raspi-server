@@ -26,7 +26,7 @@ def run_script():
     global script_process
     global gps_work
     global worker_thread
-    script_path = "./script.sh"
+    script_path = "/home/umay/server/script.sh"
     gps_work = True
     
     if not os.path.exists(script_path):
